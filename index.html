@@ -54,6 +54,12 @@
         #response {
             margin-top: 20px;
             font-weight: bold;
+            font-size: 16px;
+        }
+        .success {
+            color: #28a745; /* Bootstrap success color */
+        }
+        .error {
             color: #d9534f; /* Bootstrap danger color */
         }
     </style>
@@ -91,10 +97,15 @@
             if (response.status === 200) {
                 // Store username in localStorage
                 localStorage.setItem('username', username);
-                // Redirect to the welcome page
-                window.location.href = 'welcome.html';
+                // Show success message with smiley
+                document.getElementById('response').innerHTML = `<span class="success">😊 ${result.message}</span>`;
+                // Redirect to the welcome page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'welcome.html';
+                }, 1000);
             } else {
-                document.getElementById('response').textContent = result.message;
+                // Show error message with emoji
+                document.getElementById('response').innerHTML = `<span class="error">😞 ${result.message}</span>`;
             }
         });
     </script>
