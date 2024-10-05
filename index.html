@@ -87,7 +87,15 @@
             });
 
             const result = await response.json();
-            document.getElementById('response').textContent = result.message;
+
+            if (response.status === 200) {
+                // Store username in localStorage
+                localStorage.setItem('username', username);
+                // Redirect to the welcome page
+                window.location.href = 'welcome.html';
+            } else {
+                document.getElementById('response').textContent = result.message;
+            }
         });
     </script>
 </body>
